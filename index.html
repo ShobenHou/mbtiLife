@@ -8,79 +8,45 @@
     <link rel="stylesheet" href="./index.css">
 </head>
 <body>
-    <div class="container">
-        <div class="mainView">
-            <ul class="attrListList">
-                <ul class="attrList">
-                    <li class="attrLi attr_health">
-                        体质:0
-                    </li>
-                    <li class="attrLi">
-                        现金:0
-                    </li>
-                </ul>
-                <ul class="mbtiAttrList">
-                </ul>
+<div class="container">
+    <div class="mainView">
+        <ul class="attrListList">
+            <ul class="attrList">
+                <li class="attrLi attr_health">体质:0</li>
+                <li class="attrLi">现金:0</li>
             </ul>
-
-            <ul class="typeList"></ul>
-
-
-            <div class="wordListShell">
-                <ul class="wordList"></ul>
-            </div>
+            <ul class="mbtiAttrList">
+                <!-- MBTI Attributes will be dynamically added here -->
+            </ul>
+        </ul>
+        <ul class="typeList"></ul>
+        <div class="wordListShell">
+            <ul class="wordList"></ul>
         </div>
-        <button id="推进" autofocus>推进!</button>
-        <button id="重开">重开!</button>
-        <audio src="./assets/audio/提示抉择.mp3"></audio>
-        <!--<p class="hint">鸣谢帮助:阿布(鱼翅) 罗觉觉</p>-->
-
-        <!-- MBTI 选择弹窗 -->
-        <div id="mbtiModal" class="modal">
-            <div class="modal-content">
-                <h2>请选择您的MBTI类型</h2>
-                <select id="mbtiSelector">
-                    <option value="INTJ">INTJ</option>
-                    <option value="INFJ">INFJ</option>
-                    <option value="ENFJ">ENFJ</option>
-                    <option value="ESFJ">ESFJ</option>
-                    <option value="INTP">INTP</option>
-                    <option value="INFP">INFP</option>
-                    <option value="ENTP">ENTP</option>
-                    <option value="ENFP">ENFP</option>
-                    <option value="ISTJ">ISTJ</option>
-                    <option value="ISFJ">ISFJ</option>
-                    <option value="ESTJ">ESTJ</option>
-                    <option value="ESFP">ESFP</option>
-                    <option value="ISTP">ISTP</option>
-                    <option value="ISFP">ISFP</option>
-                    <option value="ESTP">ESTP</option>
-                    <option value="ESFP">ESFP</option>
-                </select>
-                <button id="confirmMBTI">确认</button>
-            </div>
-        </div>
-
     </div>
-    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.4/jquery.js"></script>
-    <script src="./模拟器/tools.js"></script>
-    <script src="./模拟器/模板/事件库模板.js"></script>
-    <script src="./模拟器/属性中心.js"></script>
-    <script src="./模拟器/事件中心.js"></script>
-    <script src="./模拟器/界面中心.js"></script>
-    <script src="./模拟器/词库中心.js"></script>
-    <script src="./模拟器/状态中心.js"></script>
-    <script src="./模拟器/触发中心.js"></script>
-    <script src="./模拟器/抉择中心.js"></script>
-    <script src="./模拟器/音效中心.js"></script>
-    <script type="module">
-        事件中心.初始化();
-        界面.初始化();
-        状态中心.初始化(document.querySelector('.typeList'));
-        import 人生重开日常DLC from './人生重开日常/入口文件.js'
-        人生重开日常DLC.初始化();
-        import MBTICenter from './mbti/mbtiCenter.js'; // 修改为实际路径
-        MBTICenter.init();
-    </script>
+    <button id="推进" autofocus>推进!</button>
+    <button id="重开">重开!</button>
+    <audio src="./assets/audio/提示抉择.mp3"></audio>
+</div>
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.4/jquery.js"></script>
+<script src="./模拟器/tools.js"></script>
+<script src="./模拟器/模板/事件库模板.js"></script>
+<script src="./模拟器/属性中心.js"></script>
+<script src="./模拟器/事件中心.js"></script>
+<script src="./模拟器/界面中心.js"></script>
+<script src="./模拟器/词库中心.js"></script>
+<script src="./模拟器/状态中心.js"></script>
+<script src="./模拟器/触发中心.js"></script>
+<script src="./模拟器/抉择中心.js"></script>
+<script src="./模拟器/音效中心.js"></script>
+<script type="module">
+    事件中心.初始化();
+    界面.初始化();
+    状态中心.初始化(document.querySelector('.typeList'));
+    import 人生重开日常DLC from './人生重开日常/入口文件.js'
+    人生重开日常DLC.初始化();
+    import MBTICenter from './mbti/mbtiCenter.js'; // 修改为实际路径
+    MBTICenter.init();
+</script>
 </body>
 </html>

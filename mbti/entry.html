@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MBTI 选择</title>
+    <link rel="stylesheet" href="./index.css">
+</head>
+<body>
+<div class="container">
+    <div class="entryView">
+        <h2>请选择您的MBTI类型</h2>
+        <select id="mbtiSelector">
+            <option value="INTJ">INTJ</option>
+            <option value="INFJ">INFJ</option>
+            <option value="ENFJ">ENFJ</option>
+            <option value="ESFJ">ESFJ</option>
+            <option value="INTP">INTP</option>
+            <option value="INFP">INFP</option>
+            <option value="ENTP">ENTP</option>
+            <option value="ENFP">ENFP</option>
+            <option value="ISTJ">ISTJ</option>
+            <option value="ISFJ">ISFJ</option>
+            <option value="ESTJ">ESTJ</option>
+            <option value="ESFP">ESFP</option>
+            <option value="ISTP">ISTP</option>
+            <option value="ISFP">ISFP</option>
+            <option value="ESTP">ESTP</option>
+            <option value="ESFP">ESFP</option>
+        </select>
+        <div>
+            <p>剩余点数：<span id="remainingPoints">20</span></p>
+            <label>F: <button onclick="changePoints('F', -1)">-</button><span id="fPoints">0</span><button onclick="changePoints('F', 1)">+</button></label><br>
+            <label>T: <button onclick="changePoints('T', -1)">-</button><span id="tPoints">0</span><button onclick="changePoints('T', 1)">+</button></label><br>
+            <label>S: <button onclick="changePoints('S', -1)">-</button><span id="sPoints">0</span><button onclick="changePoints('S', 1)">+</button></label><br>
+            <label>N: <button onclick="changePoints('N', -1)">-</button><span id="nPoints">0</span><button onclick="changePoints('N', 1)">+</button></label><br>
+        </div>
+        <div class="mbtiAttrList">
+            <!-- 动态生成八维属性 -->
+        </div>
+        <button id="startGame" disabled>开始游戏</button>
+    </div>
+</div>
+
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.4/jquery.js"></script>
+<script src="./entry.js"></script>
+<script src="./mbtiCenter.js"></script>
+ <!-- 修改为实际路径 -->
+<script type="module">
+    //import MBTICenter from './mbtiCenter.js';
+    document.addEventListener('DOMContentLoaded', (event) => {
+        document.getElementById('startGame').addEventListener('click', () => {
+            if (remainingPoints > 0) {
+                alert('请分配完所有点数');
+                return;
+            }
+            sessionStorage.setItem('mbtiType', MBTICenter.selectedType);
+            sessionStorage.setItem('attributes', JSON.stringify(MBTICenter.attributes));
+            window.location.href = 'index.html';
+        });
+
+        MBTICenter.initEntry();
+    });
+</script>
+
+</body>
+</html>

@@ -4,23 +4,20 @@ let MBTICenter = {
         INFJ: ["Ni", "Fe", "Ti", "Se", "Ne", "Fi", "Te", "Si"],
         ENTP: ["Ne", "Ti", "Fe", "Si", "Ni", "Te", "Fi", "Se"],
         ENFP: ["Ne", "Fi", "Te", "Si", "Ni", "Fe", "Ti", "Se"],
-
         ENFJ: ["Fe", "Ni", "Se", "Ti", "Ne", "Fi", "Te", "Si"],
         ESFJ: ["Fe", "Si", "Ne", "Ti", "Se", "Fi", "Te", "Ni"],
         INFP: ["Fi", "Ne", "Si", "Te", "Ni", "Fe", "Ti", "Se"],
         ISFP: ["Fi", "Se", "Ni", "Te", "Si", "Fe", "Ti", "Ne"],
-
         INTP: ["Ti", "Ne", "Si", "Fe", "Ni", "Te", "Fi", "Se"],
         ISTP: ["Ti", "Se", "Ni", "Fe", "Si", "Te", "Fi", "Ne"],
         ENTJ: ["Te", "Ni", "Se", "Fi", "Ti", "Ne", "Si", "Fe"],
         ESTJ: ["Te", "Si", "Ne", "Fi", "Se", "Ti", "Ni", "Fe"],
-
         ISTJ: ["Si", "Te", "Fi", "Ne", "Se", "Ti", "Fe", "Ni"],
         ISFJ: ["Si", "Fe", "Ti", "Ne", "Se", "Fi", "Te", "Ni"],
         ESTP: ["Se", "Ti", "Fe", "Ni", "Si", "Te", "Fi", "Ne"],
         ESFP: ["Se", "Fi", "Te", "Ni", "Si", "Fe", "Ti", "Ne"]
     },
-    selectedType: "",
+    selectedType: "INTJ",
     attributes: {
         Ti: 0,
         Te: 0,
@@ -32,49 +29,76 @@ let MBTICenter = {
         Se: 0
     },
     init() {
-        this.showMBTIModal();
+        this.updateMBTIAttributes(this.mbtiOrders[this.selectedType]);
     },
+    initEntry() {
+        this.showEntryPage();
+    },
+    showEntryPage() {
+        const mbtiSelector = document.getElementById('mbtiSelector');
+        mbtiSelector.addEventListener('change', () => {
+            this.selectedType = mbtiSelector.value;
+            this.updateEntryAttributes(this.mbtiOrders[this.selectedType]);
+        });
 
-    showMBTIModal() {
-        const modal = document.getElementById('mbtiModal');
-        modal.style.display = 'block';
-
-        document.getElementById('confirmMBTI').addEventListener('click', () => {
-            const selectedType = document.getElementById('mbtiSelector').value;
-            this.selectedType = selectedType;
-            this.distributePoints(this.mbtiOrders[selectedType]);
-            this.updateMBTIAttributes(this.mbtiOrders[selectedType]);
-            modal.style.display = 'none';
+        document.getElementById('startGame').addEventListener('click', () => {
+            if (remainingPoints > 0) {
+                alert('请分配完所有点数');
+                return;
+            }
+            sessionStorage.setItem('mbtiType', this.selectedType);
+            sessionStorage.setItem('attributes', JSON.stringify(this.attributes));
+            window.location.href = 'index.html';
         });
     },
-
-    distributePoints(order) {
-        let points = 20;
-        const values = Array(order.length).fill(0);
-
-        for (let i = 0; i < values.length && points > 0; i++) {
-            values[i] = Math.min(5, points);
-            points -= values[i];
-        }
-
-        for (let i = 0; i < order.length; i++) {
-            this.attributes[order[i]] = values[i];
-        }
+    updatePoints(attr, value) {
+        const pairs = {
+            F: ['Fi', 'Fe'],
+            T: ['Ti', 'Te'],
+            S: ['Si', 'Se'],
+            N: ['Ni', 'Ne']
+        };
+        pairs[attr].forEach(dimension => {
+            this.attributes[dimension] = value;
+        });
+        this.updateEntryAttributes(this.mbtiOrders[this.selectedType]);
     },
+    updateEntryAttributes(order) {
+        const mbtiAttrList = document.querySelector('.mbtiAttrList');
+        mbtiAttrList.innerHTML = ''; // 清空现有的列表
 
+        order.forEach((attr, index) => {
+            const isPositive = index < 4;
+            const abilityMultiplier = isPositive ? [12, 9, 6, 3][index] : [8, 6, 4, 2][index - 4];
+            const frequencyMultiplier = isPositive ? 3 : 1;
+
+            const abilityValue = this.attributes[attr] * abilityMultiplier;
+            const frequencyValue = this.attributes[attr] * frequencyMultiplier;
+
+            const li = document.createElement('li');
+            li.className = `mbtiLi attr_${attr.toLowerCase()}`;
+            li.innerHTML = `${attr}: ${this.attributes[attr]} <br> 能力倍率: ${abilityMultiplier} <br> 频率倍率: ${frequencyMultiplier} <br> 能力值: ${abilityValue} <br> 频率值: ${frequencyValue}`;
+            mbtiAttrList.appendChild(li);
+        });
+    },
     updateMBTIAttributes(order) {
         const mbtiAttrList = document.querySelector('.mbtiAttrList');
         mbtiAttrList.innerHTML = ''; // 清空现有的列表
 
-        order.forEach(attr => {
+        order.forEach((attr, index) => {
+            const isPositive = index < 4;
+            const abilityMultiplier = isPositive ? [12, 9, 6, 3][index] : [8, 6, 4, 2][index - 4];
+            const frequencyMultiplier = isPositive ? 3 : 1;
+
+            const abilityValue = this.attributes[attr] * abilityMultiplier;
+            const frequencyValue = this.attributes[attr] * frequencyMultiplier;
+
             const li = document.createElement('li');
             li.className = `mbtiLi attr_${attr.toLowerCase()}`;
-            li.textContent = `${attr}: ${this.attributes[attr]}`;
+            li.innerHTML = `${attr}: ${this.attributes[attr]} <br> 能力值: ${abilityValue} <br> 频率值: ${frequencyValue}`;
             mbtiAttrList.appendChild(li);
         });
     },
-
-    //TODO:对外提供的接口
     setAttribute(attr, value) {
         if (this.attributes.hasOwnProperty(attr)) {
             this.attributes[attr] = value;
@@ -84,4 +108,4 @@ let MBTICenter = {
 };
 
 // 暴露初始化方法
-export default MBTICenter;
+//export default MBTICenter;
