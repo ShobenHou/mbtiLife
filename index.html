@@ -19,6 +19,94 @@
                 <!-- MBTI Attributes will be dynamically added here -->
             </ul>
         </ul>
+        <div class="mbtiAttrTables">
+            <h3>阳面功能</h3>
+            <table id="positiveTable">
+                <tr>
+                    <th>排序</th>
+                    <th>功能</th>
+                    <th>能力倍率</th>
+                    <th>频率倍率</th>
+                    <th>能力值</th>
+                    <th>频率值</th>
+                </tr>
+                <tr>
+                    <td>主导功能</td>
+                    <td id="positive1"></td>
+                    <td id="positiveAbilityMultiplier1"></td>
+                    <td id="positiveFrequencyMultiplier1"></td>
+                    <td id="positiveAbilityValue1"></td>
+                    <td id="positiveFrequencyValue1"></td>
+                </tr>
+                <tr>
+                    <td>辅助功能</td>
+                    <td id="positive2"></td>
+                    <td id="positiveAbilityMultiplier2"></td>
+                    <td id="positiveFrequencyMultiplier2"></td>
+                    <td id="positiveAbilityValue2"></td>
+                    <td id="positiveFrequencyValue2"></td>
+                </tr>
+                <tr>
+                    <td>第三功能</td>
+                    <td id="positive3"></td>
+                    <td id="positiveAbilityMultiplier3"></td>
+                    <td id="positiveFrequencyMultiplier3"></td>
+                    <td id="positiveAbilityValue3"></td>
+                    <td id="positiveFrequencyValue3"></td>
+                </tr>
+                <tr>
+                    <td>第四功能</td>
+                    <td id="positive4"></td>
+                    <td id="positiveAbilityMultiplier4"></td>
+                    <td id="positiveFrequencyMultiplier4"></td>
+                    <td id="positiveAbilityValue4"></td>
+                    <td id="positiveFrequencyValue4"></td>
+                </tr>
+            </table>
+            <h3>阴面功能</h3>
+            <table id="negativeTable">
+                <tr>
+                    <th>排序</th>
+                    <th>功能</th>
+                    <th>能力倍率</th>
+                    <th>频率倍率</th>
+                    <th>能力值</th>
+                    <th>频率值</th>
+                </tr>
+                <tr>
+                    <td>对立功能</td>
+                    <td id="negative1"></td>
+                    <td id="negativeAbilityMultiplier1"></td>
+                    <td id="negativeFrequencyMultiplier1"></td>
+                    <td id="negativeAbilityValue1"></td>
+                    <td id="negativeFrequencyValue1"></td>
+                </tr>
+                <tr>
+                    <td>第六功能</td>
+                    <td id="negative2"></td>
+                    <td id="negativeAbilityMultiplier2"></td>
+                    <td id="negativeFrequencyMultiplier2"></td>
+                    <td id="negativeAbilityValue2"></td>
+                    <td id="negativeFrequencyValue2"></td>
+                </tr>
+                <tr>
+                    <td>第七功能</td>
+                    <td id="negative3"></td>
+                    <td id="negativeAbilityMultiplier3"></td>
+                    <td id="negativeFrequencyMultiplier3"></td>
+                    <td id="negativeAbilityValue3"></td>
+                    <td id="negativeFrequencyValue3"></td>
+                </tr>
+                <tr>
+                    <td>第八功能</td>
+                    <td id="negative4"></td>
+                    <td id="negativeAbilityMultiplier4"></td>
+                    <td id="negativeFrequencyMultiplier4"></td>
+                    <td id="negativeAbilityValue4"></td>
+                    <td id="negativeFrequencyValue4"></td>
+                </tr>
+            </table>
+        </div>
         <ul class="typeList"></ul>
         <div class="wordListShell">
             <ul class="wordList"></ul>
@@ -40,13 +128,15 @@
 <script src="./模拟器/抉择中心.js"></script>
 <script src="./模拟器/音效中心.js"></script>
 <script type="module">
+
     事件中心.初始化();
     界面.初始化();
     状态中心.初始化(document.querySelector('.typeList'));
     import 人生重开日常DLC from './人生重开日常/入口文件.js'
     人生重开日常DLC.初始化();
-    import MBTICenter from './mbti/mbtiCenter.js'; // 修改为实际路径
-    MBTICenter.init();
+
+    import { MBTICenter } from './mbti/mbtiCenter.js'; // 修改为实际路径
+    MBTICenter.initMainPage();
 </script>
 </body>
 </html>

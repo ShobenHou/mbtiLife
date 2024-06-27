@@ -1,0 +1,79 @@
+/* entry.css */
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+/* 容器样式：设置背景颜色、内边距、边框圆角和阴影 */
+
+.container {
+    text-align: center;
+    background-color: #fff; /* 设置背景颜色为白色 */
+    padding: 20px; /* 设置内边距为20px */
+    border-radius: 10px; /* 设置边框圆角为10px */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* 设置阴影效果 */
+}
+
+
+.entryView {
+    text-align: center;
+}
+
+/* 表单组样式：设置底部边距 */
+.form-group {
+
+    margin-bottom: 20px; /* 设置底部边距为20px */
+}
+
+/* 点数容器样式：设置底部边距 */
+.points-container {
+    margin-bottom: 20px; /* 设置底部边距为20px */
+}
+
+/* 点数调整样式：每个标签块显示并设置底部边距 */
+.points-adjust label {
+    display: block; /* 设置为块级元素 */
+    margin-bottom: 10px; /* 设置底部边距为10px */
+}
+
+/* 按钮样式：设置内边距、边框、圆角、背景颜色、文字颜色和鼠标指针样式 */
+button {
+    margin: 0 5px; /* 设置左右外边距为5px */
+    padding: 5px 10px; /* 设置内边距为5px 10px */
+    border: none; /* 去除默认边框 */
+    border-radius: 5px; /* 设置边框圆角为5px */
+    background-color: #007BFF; /* 设置背景颜色为蓝色 */
+    color: #fff; /* 设置文字颜色为白色 */
+    cursor: pointer; /* 设置鼠标指针为手形 */
+}
+
+/* 禁用按钮样式：设置背景颜色和鼠标指针样式 */
+button:disabled {
+    background-color: #ccc; /* 设置背景颜色为浅灰色 */
+    cursor: not-allowed; /* 设置鼠标指针为不允许 */
+}
+
+/* 响应式设计：当屏幕宽度小于600px时的样式 */
+@media (max-width: 600px) {
+    .container {
+        width: 90%; /* 设置容器宽度为90% */
+    }
+
+    .points-adjust label {
+        display: flex; /* 使用flexbox布局 */
+        justify-content: space-between; /* 子元素之间均匀分布 */
+    }
+
+    button {
+        padding: 5px; /* 设置内边距为5px */
+        margin: 0 2px; /* 设置左右外边距为2px */
+    }
+}
+
+
+
+.mbtiAttrTables {
+    width: 50%;
+    margin-top: 10px;
+}
+

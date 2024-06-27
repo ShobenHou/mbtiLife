@@ -1,15 +1,18 @@
+import { MBTICenter } from './mbtiCenter.js';
 
-let remainingPoints = 20;
+document.addEventListener('DOMContentLoaded', (event) => {
+    document.getElementById('startGame').addEventListener('click', () => {
+        if (MBTICenter.remainingPoints > 0) {
+            alert('请分配完所有点数');
+            return;
+        }
+        sessionStorage.setItem('mbtiType', MBTICenter.selectedType);
+        sessionStorage.setItem('attributes', JSON.stringify(MBTICenter.attributes));
+        window.location.href = '../index.html';
+    });
 
-function changePoints(attr, delta) {
-    const currentPoints = parseInt(document.getElementById(attr.toLowerCase() + 'Points').innerText);
-    if (remainingPoints - delta >= 0 && currentPoints + delta >= 0) {
-        document.getElementById(attr.toLowerCase() + 'Points').innerText = currentPoints + delta;
-        remainingPoints -= delta;
-        document.getElementById('remainingPoints').innerText = remainingPoints;
-        MBTICenter.updatePoints(attr, currentPoints + delta);
-        document.getElementById('startGame').disabled = remainingPoints > 0;
-    }
-}
+    // 将 changePoints 方法挂载到 window 对象上
+    window.changePoints = MBTICenter.changePoints.bind(MBTICenter);
 
-
+    MBTICenter.initEntry();
+});

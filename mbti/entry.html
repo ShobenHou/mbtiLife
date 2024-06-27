@@ -36,33 +36,97 @@
             <label>S: <button onclick="changePoints('S', -1)">-</button><span id="sPoints">0</span><button onclick="changePoints('S', 1)">+</button></label><br>
             <label>N: <button onclick="changePoints('N', -1)">-</button><span id="nPoints">0</span><button onclick="changePoints('N', 1)">+</button></label><br>
         </div>
-        <div class="mbtiAttrList">
-            <!-- 动态生成八维属性 -->
+        <div class="mbtiAttrTables">
+            <h3>阳面功能</h3>
+            <table id="positiveTable">
+                <tr>
+                    <th>排序</th>
+                    <th>功能</th>
+                    <th>能力倍率</th>
+                    <th>频率倍率</th>
+                    <th>能力值</th>
+                    <th>频率值</th>
+                </tr>
+                <tr>
+                    <td>主导功能</td>
+                    <td id="positive1"></td>
+                    <td id="positiveAbilityMultiplier1"></td>
+                    <td id="positiveFrequencyMultiplier1"></td>
+                    <td id="positiveAbilityValue1"></td>
+                    <td id="positiveFrequencyValue1"></td>
+                </tr>
+                <tr>
+                    <td>辅助功能</td>
+                    <td id="positive2"></td>
+                    <td id="positiveAbilityMultiplier2"></td>
+                    <td id="positiveFrequencyMultiplier2"></td>
+                    <td id="positiveAbilityValue2"></td>
+                    <td id="positiveFrequencyValue2"></td>
+                </tr>
+                <tr>
+                    <td>第三功能</td>
+                    <td id="positive3"></td>
+                    <td id="positiveAbilityMultiplier3"></td>
+                    <td id="positiveFrequencyMultiplier3"></td>
+                    <td id="positiveAbilityValue3"></td>
+                    <td id="positiveFrequencyValue3"></td>
+                </tr>
+                <tr>
+                    <td>第四功能</td>
+                    <td id="positive4"></td>
+                    <td id="positiveAbilityMultiplier4"></td>
+                    <td id="positiveFrequencyMultiplier4"></td>
+                    <td id="positiveAbilityValue4"></td>
+                    <td id="positiveFrequencyValue4"></td>
+                </tr>
+            </table>
+            <h3>阴面功能</h3>
+            <table id="negativeTable">
+                <tr>
+                    <th>排序</th>
+                    <th>功能</th>
+                    <th>能力倍率</th>
+                    <th>频率倍率</th>
+                    <th>能力值</th>
+                    <th>频率值</th>
+                </tr>
+                <tr>
+                    <td>对立功能</td>
+                    <td id="negative1"></td>
+                    <td id="negativeAbilityMultiplier1"></td>
+                    <td id="negativeFrequencyMultiplier1"></td>
+                    <td id="negativeAbilityValue1"></td>
+                    <td id="negativeFrequencyValue1"></td>
+                </tr>
+                <tr>
+                    <td>第六功能</td>
+                    <td id="negative2"></td>
+                    <td id="negativeAbilityMultiplier2"></td>
+                    <td id="negativeFrequencyMultiplier2"></td>
+                    <td id="negativeAbilityValue2"></td>
+                    <td id="negativeFrequencyValue2"></td>
+                </tr>
+                <tr>
+                    <td>第七功能</td>
+                    <td id="negative3"></td>
+                    <td id="negativeAbilityMultiplier3"></td>
+                    <td id="negativeFrequencyMultiplier3"></td>
+                    <td id="negativeAbilityValue3"></td>
+                    <td id="negativeFrequencyValue3"></td>
+                </tr>
+                <tr>
+                    <td>第八功能</td>
+                    <td id="negative4"></td>
+                    <td id="negativeAbilityMultiplier4"></td>
+                    <td id="negativeFrequencyMultiplier4"></td>
+                    <td id="negativeAbilityValue4"></td>
+                    <td id="negativeFrequencyValue4"></td>
+                </tr>
+            </table>
         </div>
         <button id="startGame" disabled>开始游戏</button>
     </div>
 </div>
-
-<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.4/jquery.js"></script>
-<script src="./entry.js"></script>
-<script src="./mbtiCenter.js"></script>
- <!-- 修改为实际路径 -->
-<script type="module">
-    //import MBTICenter from './mbtiCenter.js';
-    document.addEventListener('DOMContentLoaded', (event) => {
-        document.getElementById('startGame').addEventListener('click', () => {
-            if (remainingPoints > 0) {
-                alert('请分配完所有点数');
-                return;
-            }
-            sessionStorage.setItem('mbtiType', MBTICenter.selectedType);
-            sessionStorage.setItem('attributes', JSON.stringify(MBTICenter.attributes));
-            window.location.href = 'index.html';
-        });
-
-        MBTICenter.initEntry();
-    });
-</script>
-
+<script type="module" src="./entry.js"></script>
 </body>
 </html>
